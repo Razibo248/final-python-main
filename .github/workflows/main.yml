@@ -31,12 +31,12 @@ jobs:
 
       # Step 4: Build the Docker image
       - name: Build the Docker image
-        run: docker build . -t razboko/my-app:1
+        run: docker build . -t razbo/final-python-main:latest
 
       # Step 5: Run container tests
       - name: Run container tests
         run: |
-          docker run --rm ${{ secrets.DOCKERHUB_USERNAME }}/my-app:1 <Docker Test>
+          docker run --rm razbo/final-python-main:latest <Docker Test>
       # Step 6: Push the Docker image to DockerHub
       - name: Push the Docker image to DockerHub
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-app:1
+        run: docker push razbo/final-python-main:latest
