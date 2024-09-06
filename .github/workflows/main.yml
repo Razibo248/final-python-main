@@ -31,7 +31,7 @@ jobs:
 
       # Step 4: Build the Docker image
       - name: Build the Docker image
-        run: docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/my-app:1
+        run: docker build . -t razboko/my-app:1
 
       # Step 5: Run container tests
       - name: Run container tests
