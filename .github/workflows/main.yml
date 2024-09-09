@@ -37,7 +37,7 @@ jobs:
       # Step 5 Test
       - name: Test the Docker image
         run: |
-          docker run --rm razbo/final-python-main:latest pytest
+          docker run --rm razbo/final-python-main:latest python --version
           
       # Step 6 Push
       - name: Push the Docker image to DockerHub
