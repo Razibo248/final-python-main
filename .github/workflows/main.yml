@@ -27,10 +27,6 @@ jobs:
       - name: Build the Docker image
         run: docker build . -t razbo/final-python-main:111
 
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -38,10 +34,6 @@ jobs:
         run: |
           docker run --rm razbo/final-python-main:111 python --version
 
-  push:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
       - name: Log in to DockerHub
         uses: docker/login-action@v2
         with:
@@ -53,7 +45,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: push
+    needs: build
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
