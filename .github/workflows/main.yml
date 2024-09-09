@@ -33,6 +33,12 @@ jobs:
       - name: Build the Docker image
         run: docker build . -t razbo/final-python-main:latest
 
+  
+      # Step 5 Test
+      - name: Test the Docker image
+        run: |
+          docker run --rm razbo/final-python-main:latest pytest
+          
       # Step 6 Push
       - name: Push the Docker image to DockerHub
         run: docker push razbo/final-python-main:latest
