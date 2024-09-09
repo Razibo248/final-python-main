@@ -48,13 +48,11 @@ jobs:
 
       # Step 7 Set up AWS CLI
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@master
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-3
-          # role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          # role-session-name: GitHubActionsSession  
 
       # Step 8 Update ECS Service
       - name: Update ECS Service
