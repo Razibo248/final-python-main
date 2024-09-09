@@ -42,3 +42,28 @@ jobs:
       # Step 6 Push
       - name: Push the Docker image to DockerHub
         run: docker push razbo/final-python-main:latest
+
+
+
+
+      # Step 7 Set up AWS CLI
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # Step 8 Update ECS Service
+      - name: Update ECS Service
+        run: |
+          ecs_service_name="final-exam-service"
+          ecs_cluster_name="raz-final-exam"
+          container_name="final-python-main"
+          docker_image="razbo/final-python-main:latest"
+          
+          aws ecs update-service \
+            --cluster $ecs_cluster_name \
+            --service $ecs_service_name \
+            --force-new-deployment \
+            --region ${{ secrets.AWS_REGION }}
