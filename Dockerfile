@@ -13,6 +13,9 @@ RUN pip install pipenv
 # Install project dependencies
 RUN pipenv install --system --deploy
 
+# Install pytest
+RUN pip install pytest
+
 # Expose port 5000 for the application
 EXPOSE 5000
 
