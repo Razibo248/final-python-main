@@ -60,7 +60,6 @@ jobs:
         id: render-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: .aws/task-definition.json
           task-definition-arn:  arn:aws:ecs:eu-west-3:199051453468:task-definition/raz-final-exem-task:3
           task-definition-family: raz-final-exem-task
           task-definition-revision: 3
