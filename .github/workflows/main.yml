@@ -61,7 +61,6 @@ jobs:
           task-definition-family: raz-final-exem-task
           container-name: final-python-main
           image: razbo/final-python-main:latest
-          environment-variables: "LOG_LEVEL=info"
 
       - name: Deploy to Amazon ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
@@ -69,4 +68,3 @@ jobs:
           task-definition: ${{ steps.render-container.outputs.task-definition }}
           service: final-exam-service
           cluster: raz-final-exam
-
