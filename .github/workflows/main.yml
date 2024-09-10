@@ -60,7 +60,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: raz-final-exem-task:2
+          task-definition: ./raz-final-exem-task-revision2.json
           container-name: final-python-main
           image: razbo/final-python-main:333
   
