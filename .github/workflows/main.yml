@@ -25,14 +25,14 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build the Docker image
-        run: docker build . -t razbo/final-python-main:111
+        run: docker build . -t razbo/final-python-main:latest
 
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Test the Docker image
         run: |
-          docker run --rm razbo/final-python-main:111 python --version
+          docker run --rm razbo/final-python-main:latest python --version
 
       - name: Log in to DockerHub
         uses: docker/login-action@v2
@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push the Docker image to DockerHub
-        run: docker push razbo/final-python-main:111
+        run: docker push razbo/final-python-main:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -59,7 +59,7 @@ jobs:
           ecs_service_name="final-exam-service"
           ecs_cluster_name="raz-final-exam"
           container_name="final-python-main"
-          docker_image="razbo/final-python-main:111"
+          docker_image="razbo/final-python-main:latest"
           
           aws ecs update-service \
             --cluster $ecs_cluster_name \
