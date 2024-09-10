@@ -54,15 +54,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-3
 
-
-      
       - name: Render Amazon ECS task definition
         id: render-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition-arn:  arn:aws:ecs:eu-west-3:199051453468:task-definition/raz-final-exem-task:3
           task-definition-family: raz-final-exem-task
-          task-definition-revision: 3
           container-name: final-python-main
           image: razbo/final-python-main:latest
           environment-variables: "LOG_LEVEL=info"
@@ -74,18 +70,3 @@ jobs:
           service: final-exam-service
           cluster: raz-final-exam
 
-
-        
-      # - name: Update ECS Service
-      #   run: |
-      #     ecs_service_name="final-exam-service"
-      #     ecs_cluster_name="raz-final-exam"
-      #     container_name="final-python-main"
-      #     docker_image="razbo/final-python-main:latest"
-          
-      #     aws ecs update-service \
-      #       --cluster $ecs_cluster_name \
-      #       --service $ecs_service_name \
-      #       --task-definition raz-final-exem-task:2 \
-      #       --force-new-deployment \
-      #       --region eu-west-3
